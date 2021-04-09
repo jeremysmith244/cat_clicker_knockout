@@ -1,4 +1,4 @@
-var ViewModel = function() {
+var Cat = function () {
 
     self = this;
     self.clickCount = ko.observable(0);
@@ -11,10 +11,6 @@ var ViewModel = function() {
         {nick:'Tabytron Prime'},
         {nick:'Holy Tabyrnacle'},
     ]);
-
-    self.incrementCounter = function() {
-        self.clickCount(self.clickCount() + 1);
-    };
 
     self.level = ko.computed(function() {
         if (self.clickCount() < 10) {
@@ -31,5 +27,16 @@ var ViewModel = function() {
             return 'Moldy';
         };
     });
+
+};
+
+var ViewModel = function() {
+
+    this.currentCat = ko.observable( new Cat() );
+
+    this.incrementCounter = function() {
+        this.currentCat().clickCount(this.currentCat().clickCount() + 1);
+    };
+
 };
 ko.applyBindings(new ViewModel());
