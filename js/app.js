@@ -1,16 +1,11 @@
-var Cat = function () {
+var Cat = function (data) {
 
     that = this;
     that.clickCount = ko.observable(0);
-    that.name = ko.observable('Tabby');
-    that.imgSrc = ko.observable('img/22252709_010df3379e_z.jpg');
+    that.name = ko.observable(data.name);
+    that.imgSrc = ko.observable(data.src);
 
-    that.nickNames = ko.observableArray([
-        {nick:'Tabitha'},
-        {nick:'Tabberella'},
-        {nick:'Tabytron Prime'},
-        {nick:'Holy Tabyrnacle'},
-    ]);
+    that.nickNames = ko.observableArray(data.nickNames);
 
     that.level = ko.computed(function() {
         if (that.clickCount() < 10) {
@@ -33,7 +28,16 @@ var Cat = function () {
 var ViewModel = function() {
 
     thiz = this;
-    thiz.currentCat = ko.observable( new Cat() );
+    thiz.currentCat = ko.observable( new Cat({
+        name: 'Tabby',
+        src: 'img/22252709_010df3379e_z.jpg',
+        nickNames: [
+            {nick:'Tabitha'},
+            {nick:'Tabberella'},
+            {nick:'Tabytron Prime'},
+            {nick:'Holy Tabyrnacle'},
+        ]
+    }) );
 
     thiz.incrementCounter = function() {
         thiz.currentCat().clickCount(thiz.currentCat().clickCount() + 1);
