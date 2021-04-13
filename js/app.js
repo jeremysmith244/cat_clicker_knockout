@@ -1,27 +1,27 @@
 var Cat = function () {
 
-    self = this;
-    self.clickCount = ko.observable(0);
-    self.name = ko.observable('Tabby');
-    self.imgSrc = ko.observable('img/22252709_010df3379e_z.jpg');
+    that = this;
+    that.clickCount = ko.observable(0);
+    that.name = ko.observable('Tabby');
+    that.imgSrc = ko.observable('img/22252709_010df3379e_z.jpg');
 
-    self.nickNames = ko.observableArray([
+    that.nickNames = ko.observableArray([
         {nick:'Tabitha'},
         {nick:'Tabberella'},
         {nick:'Tabytron Prime'},
         {nick:'Holy Tabyrnacle'},
     ]);
 
-    self.level = ko.computed(function() {
-        if (self.clickCount() < 10) {
+    that.level = ko.computed(function() {
+        if (that.clickCount() < 10) {
             return 'Baby';
-        } else if (self.clickCount() < 20) {
+        } else if (that.clickCount() < 20) {
             return 'Teeny';
-        } else if (self.clickCount() < 30) {
+        } else if (that.clickCount() < 30) {
             return 'Meeny';
-        } else if (self.clickCount() < 40) {
+        } else if (that.clickCount() < 40) {
             return 'Goldy';
-        } else if (self.clickCount() < 60) {
+        } else if (that.clickCount() < 60) {
             return 'Oldy';
         } else {
             return 'Moldy';
@@ -32,10 +32,11 @@ var Cat = function () {
 
 var ViewModel = function() {
 
-    this.currentCat = ko.observable( new Cat() );
+    thiz = this;
+    thiz.currentCat = ko.observable( new Cat() );
 
-    this.incrementCounter = function() {
-        this.currentCat().clickCount(this.currentCat().clickCount() + 1);
+    thiz.incrementCounter = function() {
+        thiz.currentCat().clickCount(thiz.currentCat().clickCount() + 1);
     };
 
 };
